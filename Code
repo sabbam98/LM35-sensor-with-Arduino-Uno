@@ -1,0 +1,19 @@
+int sensorPin = A0;   // LM35 connected to Analog pin A0
+float temperature;    
+
+void setup() {
+  Serial.begin(9600);  // Start Serial Communication
+  Serial.println("LM35 Temperature Monitor");
+}
+
+void loop() {
+  int sensorValue = analogRead(sensorPin);   // Read LM35 value (0-1023)
+  temperature = (sensorValue * 5.0 * 100.0) / 1024.0; 
+  // Formula: (ADC value * 5V / 1024) * 100
+
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println(" °C");  // Degree Celsius
+
+  delay(1000);  // Update every 1 second
+}
